@@ -1,7 +1,7 @@
-# 🌐 FutureOfWork API  
+# 🌐 TalentMind API  
 ### Plataforma RESTful para Gestão de Profissionais e Oportunidades — FIAP Global Solution
 
-A **FutureOfWork API** é um projeto desenvolvido em **C# .NET 8**, estruturado para oferecer um conjunto de endpoints modernos para gerenciamento de **Trabalhadores (Workers)** e **Vagas de Emprego (Jobs)**.  
+A **TalentMind API** é um projeto desenvolvido em **C# .NET 8**, estruturado para oferecer um conjunto de endpoints modernos para gerenciamento de **Trabalhadores (Workers)** e **Vagas de Emprego (Jobs)**.  
 O foco da solução é apoiar empresas na organização de talentos e oportunidades usando boas práticas de arquitetura e versionamento de APIs.
 
 ---
