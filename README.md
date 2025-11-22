@@ -17,7 +17,7 @@ O foco da solução é apoiar empresas na organização de talentos e oportunida
 
 Este projeto foi desenvolvido com um ecossistema moderno e robusto:
 
-- **.NET 8 (C#)**
+- **.NET 9 (C#)**
 - **ASP.NET Core Web API**
 - **Entity Framework Core**
 - **SQL Server Express (localdb / SQLEXPRESS)**
