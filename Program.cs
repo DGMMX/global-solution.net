@@ -1,5 +1,6 @@
 using FutureOfWork.Api.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,15 +11,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.EnableAnnotations();
-
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = builder.Configuration["Swagger:Title"] ?? "TalentMind API",
 
-        Description = (builder.Configuration["Swagger:Description"] ?? "Documentação da API") + DateTime.Now.Year,
+        Description = (builder.Configuration["Swagger:Description"] ?? "Documentação da API ") 
+                      + DateTime.Now.Year,
 
-        Contact = new OpenApiContact()
+        Contact = new OpenApiContact
         {
             Email = "rm558710@fiap.com.br",
             Name = "Diego Bassalo"
@@ -36,11 +36,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TalentMind API v1");
+    });
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 // Mapeia os controllers automaticamente
