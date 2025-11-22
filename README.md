@@ -77,3 +77,79 @@ As operações disponíveis são:
   "preferredWorkMode": "Remoto",
   "yearsOfExperience": 5
 }
+```
+## 📍 Workers — V2
+Método	Rota	Descrição
+GET	/api/v2/Workers	Lista trabalhadores com Jobs
+GET	/api/v2/Workers/{id}	Detalha worker + jobs
+
+## 📍 Jobs — V1
+Método	Rota	Descrição
+GET	/api/v1/Jobs	Lista vagas
+GET	/api/v1/Jobs/{id}	Busca vaga
+POST	/api/v1/Jobs	Cria vaga
+PUT	/api/v1/Jobs/{id}	Atualiza vaga
+DELETE	/api/v1/Jobs/{id}	Remove vaga
+
+### 🧪 Exemplo — POST Job
+{
+  "title": "Analista de Dados",
+  "company": "TechFlow",
+  "workMode": "Remoto",
+  "requiredSkill": "SQL, Power BI",
+  "salaryFrom": 3500.00,
+  "salaryTo": 7000.00,
+  "workerId": null
+}
+
+## 🛢 Estrutura do Banco de Dados
+
+O projeto utiliza SQL Server Express e Entity Framework Core, que gerencia migrations e versionamento do schema.
+
+### 🧱 Tabela Workers
+Campo	Tipo
+Id	int
+Name	string
+Email	string
+MainSkill	string
+PreferredWorkMode	string
+YearsOfExperience	int
+
+### 🧱 Tabela Jobs
+Campo	Tipo
+Id	int
+Title	string
+Company	string
+WorkMode	string
+RequiredSkill	string
+SalaryFrom	decimal
+SalaryTo	decimal
+WorkerId	int?
+
+## ▶️ Como rodar o projeto
+1- Clonar o repositório
+```
+git clone https://github.com/DGMMX/global-solution.net.git
+```
+
+2- Restaurar dependências
+```
+dotnet restore
+```
+
+3- Aplicar migrations
+```
+dotnet ef database update
+```
+
+4 Executar API
+```
+dotnet run
+```
+
+5- Acessar o Swagger
+```
+Acesse no navegador: http://localhost:5046/swagger
+```
+
+
