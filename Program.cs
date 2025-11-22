@@ -8,7 +8,23 @@ builder.Services.AddControllers();
 
 // Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations();
+
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = builder.Configuration["Swagger:Title"] ?? "TalentMind API",
+
+        Description = (builder.Configuration["Swagger:Description"] ?? "Documentação da API") + DateTime.Now.Year,
+
+        Contact = new OpenApiContact()
+        {
+            Email = "rm558710@fiap.com.br",
+            Name = "Diego Bassalo"
+        }
+    });
+});
 
 // EF Core + SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
