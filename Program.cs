@@ -1,11 +1,15 @@
 using FutureOfWork.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Controllers (para sua API funcionar)
 builder.Services.AddControllers();
+
+// Health Checks
+builder.Services.AddHealthChecks();
 
 // Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -47,5 +51,8 @@ app.UseAuthorization();
 
 // Mapeia os controllers automaticamente
 app.MapControllers();
+
+// Health Check endpoint
+app.MapHealthChecks("/health");
 
 app.Run();
