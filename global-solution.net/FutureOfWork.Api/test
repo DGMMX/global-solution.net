@@ -1,0 +1,40 @@
+using System.Threading.Tasks;
+using Xunit;
+using Microsoft.AspNetCore.Mvc.Testing;
+using System.Net;
+
+// Importe o namespace do seu projeto principal para que o teste consiga referenciá-lo.
+// Substitua 'FutureOfWork.Api' pelo namespace raiz do seu projeto se for diferente.
+using FutureOfWork.Api; 
+
+namespace FutureOfWork.Api.Tests
+{
+    // Usa WebApplicationFactory para criar um host em memória para testes de integração leves.
+    public class HealthCheckTest : IClassFixture<WebApplicationFactory<Program>>
+    {
+        private readonly WebApplicationFactory<Program> _factory;
+
+        // O construtor recebe a fábrica para criar o cliente HTTP para testes.
+        public HealthCheckTest(WebApplicationFactory<Program> factory)
+        {
+            _factory = factory;
+        }
+
+        [Fact] // Marca este método como um Teste de Unidade (Fato)
+        public async Task Health_Endpoint_Returns_Success()
+        {
+            // Arrange: Cria um cliente HTTP para interagir com a aplicação em memória.
+            var client = _factory.CreateClient();
+
+            // Act: Faz uma requisição GET para o endpoint /health.
+            var response = await client.GetAsync("/health");
+
+            // Assert: Verifica se a resposta foi bem-sucedida (código 200 OK).
+            // O Health Check deve retornar 200 OK se a API estiver operacional.
+            response.EnsureSuccessStatusCode(); 
+            
+            // Verifica explicitamente se o status code é OK
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode); 
+        }
+    }
+}
